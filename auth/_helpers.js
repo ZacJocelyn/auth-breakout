@@ -24,6 +24,18 @@ function comparePass(userPassword, databasePassword) {
   else return true;
 }
 
+// router.get('/', function(req, res, next) {
+//   return knex("sticker")
+//   .then(data => {
+//       res.json(data);
+//   })
+//   .catch((err) => {
+//     res.status(500).json({
+//       status: 'error'
+//     });
+//   });
+// });
+
 function ensureAuthenticated(req, res, next) {
   if (!(req.headers && req.headers.authorization)) {
     return res.status(400).json({
@@ -41,8 +53,15 @@ function ensureAuthenticated(req, res, next) {
     } else {
       // check if the user still exists in the db
       return knex('user').where({id: parseInt(payload.user.id)}).first()
-      .then((user) => {
-        next();
+      .then((logged) => {
+        return knex("sticker")
+            .then(data => {
+                var result = {
+                    stickers: data,
+                    logged: logged
+                };
+                res.json(result);
+            });
       })
       .catch((err) => {
         res.status(500).json({
