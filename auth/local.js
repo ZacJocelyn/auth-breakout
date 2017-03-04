@@ -6,7 +6,7 @@ function encodeToken(user) {
   const playload = {
     exp: moment().add(14, 'days').unix(),
     iat: moment().unix(),
-    member: user
+    user: user
   };
   return jwt.encode(playload, process.env.TOKEN_SECRET);
 }

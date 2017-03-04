@@ -8,8 +8,8 @@ var localAuth = require('../auth/local')
 
 
 router.post('/', (req, res, next) => {
-  const email = req.body.auth.email;
-  const password = req.body.auth.password;
+  const email = req.body.email;
+  const password = req.body.password;
   console.log(req.body);
   return authHelpers.getUser(email)
   .then((response) => {

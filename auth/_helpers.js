@@ -3,10 +3,10 @@ const knex = require('../db/knex');
 var localAuth = require('./local')
 
 function createUser(req) {
-  const hash = bcrypt.hashSync(req.body.member.password, 10);
+  const hash = bcrypt.hashSync(req.body.password, 10);
   return knex('user')
   .insert({
-    email: req.body.member.email,
+    email: req.body.email,
     password: hash,
   })
   .returning('*');
@@ -40,7 +40,7 @@ function ensureAuthenticated(req, res, next) {
       });
     } else {
       // check if the user still exists in the db
-      return knex('user').where({id: parseInt(payload.member.id)}).first()
+      return knex('user').where({id: parseInt(payload.user.id)}).first()
       .then((user) => {
         next();
       })
