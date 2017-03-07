@@ -12,3 +12,5 @@
 * Add auth helpers to post
 
 ## Step three!!
+* Ensure auth
+* set auth token on front end
