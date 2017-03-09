@@ -42,7 +42,6 @@ function ensureAuthenticated(req, res, next) {
       status: 'Please log in'
     });
   }
-  // decode the token
   var header = req.headers.authorization.split(' ');
   var token = header[1];
   localAuth.decodeToken(token, (err, payload) => {

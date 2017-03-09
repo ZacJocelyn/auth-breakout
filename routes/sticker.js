@@ -6,18 +6,6 @@ var authHelpers = require('../auth/_helpers')
 /* GET users listing. */
 var knex = require('../db/knex');
 
-// router.get('/', function(req, res, next) {
-//   return knex("sticker")
-//   .then(data => {
-//       res.json(data);
-//   })
-//   .catch((err) => {
-//     res.status(500).json({
-//       status: 'error'
-//     });
-//   });
-// });
-
 router.get('/', function(req, res, next) {
   authHelpers.ensureAuthenticated(req, res, next);
 });
