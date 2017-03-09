@@ -3,7 +3,7 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.text('image_url').notNullable();
     table.text('name').notNullable();
-    table.integer('user_id').unsigned().references('user.id')
+    table.integer('user_id').unsigned().references('user.id').onDelete('cascade');
   })
 };
 
